@@ -1,0 +1,54 @@
+<div class="alert alert-success alert-dismissible js-submissionSuccessMessage" role="alert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+    Thank you for taking the time!
+</div>
+<div class="alert alert-danger alert-dismissible js-submissionErrorMessage" role="alert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Error!</strong> Form was not sent. Please fill in all fields carefully and try again.
+</div>
+
+<h2>BrandPly Questionnaire</h2>
+<form id="questionnaireForm" ng-submit="submit()" name="questionnaireForm" novalidate>
+    <div class="form-group" id="sprintStatus"> </div>
+
+    <div class="form-group">
+        <label for="codeQuality">Code quality</label> <br />
+        <input id="codeQuality" type="text" name="codeQuality" data-slider-ticks="[1, 10]" data-slider-ticks-labels='["low", "high"]'
+            data-slider-value="10" data-slider-tooltip="hide" ng-model="formData.codeQuality" />
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': questionnaireForm.bestDev.$invalid && submitted }">
+        <label for="bestDev">The best developer</label>
+        <select name="bestDev" id="bestDev" class="form-control" required ng-model="formData.bestDev">
+            <option value="" selected>Select dev</option>
+            <option value="Eugene Novikov">Eugene Novikov</option>
+            <option value="Nikita Evdokimenko">Nikita Evdokimenko</option>
+        </select>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': questionnaireForm.suggestions.$invalid && submitted }">
+        <label for="suggestions">Suggestions</label>
+        <textarea name="suggestions" id="suggestions" class="form-control" rows="3" required ng-model="formData.suggestions"></textarea>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': questionnaireForm.lengthOfSprint.$invalid && submitted }">
+        <label for="lengthOfSprint"> Length of sprint </label>
+        <input type="number" name="lengthOfSprint" id="lengthOfSprint" class="form-control" required ng-model="formData.lengthOfSprint" />
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': questionnaireForm.name.$invalid && submitted }">
+        <label for="name">Your name </label>
+        <input type="text" name="name" id="name" class="form-control" required ng-model="formData.name" />
+    </div>
+
+    <p class="text-warning"><strong>All fields are required.</strong></p>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="reset" class="btn btn-default" ng-click="clear()"> Clear</button>
+    </div>
+
+    <div data-ng-show="error" class="text-center text-danger error">
+        <strong data-ng-bind="error"></strong>
+    </div>
+</form>
