@@ -17,9 +17,7 @@
     "express-validator": "^3.2.0",
     "jasmine-spec-reporter": "^4.2.1",
     "moment": "^2.18.1",
-    "mongoose": "^4.11.10"
-  },
-  "devDependencies": {
+    "mongoose": "^4.11.10",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-concurrent": "^2.3.1",
@@ -27,6 +25,8 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^3.1.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-nodemon": "^0.4.2"
+    "grunt-nodemon": "^0.4.2",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-html2js": "^0.5.1"
   }
 }

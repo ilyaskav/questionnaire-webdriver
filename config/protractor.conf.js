@@ -1,4 +1,4 @@
-let specs = ['add-questionnaire-form.js', 'get-results.js'];
+let specs = ['webdriver.js'];
 let data = {
     mainSiteUrl: 'http://localhost:8080'
 };
@@ -8,7 +8,7 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: specs.map((value) => { return '../spec/' + value }),
     capabilities: {
-        browserName: 'chrome'
+        browserName: 'firefox'
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 140000,
