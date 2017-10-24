@@ -1,28 +1,67 @@
 'use strict';
 
-var webdriver = require('selenium-webdriver'),
-    By = webdriver.By,
-    until = webdriver.until;
 
-var selenium = new webdriver.Builder()
-    .forBrowser('firefox')
-    .build(),
-    config = require(process.cwd() + '/config/protractor.conf.js');
+const config = require(process.cwd() + '/config/protractor.conf.js'),
+    HomePage = require('../spec/pages/home.page.js'),
+    Chapter2Page = require('../spec/pages/chapter2.page.js');
 
-// const _ec = protractor.ExpectedConditions,
-//     defaultWaitTime = config.defaultWaitTime;
+const _ec = protractor.ExpectedConditions,
+    defaultWaitTime = config.defaultWaitTime;
 
-// let questionnairePage = new QuestionnairePage(defaultWaitTime),
-//     resultsPage = new ResultsPage(defaultWaitTime);
+let homePage = new HomePage(defaultWaitTime),
+    chapter2Page = new Chapter2Page(defaultWaitTime);
 
 
-describe('Webdriver tests', () => {
-
-    it('1', () => {
-        if (!"Page 2".equals(selenium.getTitle())) {
-            selenium.get("http://book.theautomatedtester.co.uk/chapter2");
-        }
-        expect(selenium.getTitle()).toBe("Page 2");
+describe('Webdriver tests. Chapter 4', () => {
+    beforeAll(() => {
+        browser.ignoreSynchronization = true;
     });
 
+    it('Should check title', () => {
+        browser.getTitle().then((title) => {
+            if (title !== "Selenium: Beginners Guide") {
+                browser.get("http://book.theautomatedtester.co.uk/chapter2");
+            }
+            expect(browser.getTitle()).toBe("Selenium: Beginners Guide");
+        });
+    });
+
+    it('Should Check Button On Chapter 2 Page', () => {
+        loadHomePage();
+        clickAndLoadChapter2();
+
+        expect(element(by.css('#but1')).getSize()).toEqual(jasmine.objectContaining({
+            width: 99,
+            height: 21
+        }));
+    });
+
+    it('Should Check Another Button On Chapter 2 Page', () => {
+        loadHomePage();
+        clickAndLoadChapter2();
+
+        expect(element(by.name('verifybutton')).getSize()).toEqual(jasmine.objectContaining({
+            width: 204,
+            height: 21
+        }));
+    });
+
+    it('Should use page objects', () => {
+        browser.get("http://book.theautomatedtester.co.uk");
+        homePage.clickChapter(2);
+        expect(chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
+    });
+
+    it('Should Load The Home Page And Then Check Button On Chapter2', () => {
+        chapter2Page.get();
+        expect(chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
+    });
 });
+
+function clickAndLoadChapter2() {
+    element(by.linkText("Chapter2")).click();
+}
+
+function loadHomePage() {
+    browser.get("http://book.theautomatedtester.co.uk");
+}
