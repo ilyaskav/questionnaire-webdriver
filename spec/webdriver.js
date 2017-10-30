@@ -8,8 +8,7 @@ const config = require(process.cwd() + '/config/protractor.conf.js'),
 const _ec = protractor.ExpectedConditions,
     defaultWaitTime = config.defaultWaitTime;
 
-let homePage = new HomePage(defaultWaitTime),
-    chapter2Page = new Chapter2Page(defaultWaitTime);
+// let chapter2Page = new Chapter2Page(defaultWaitTime);
 
 
 describe('Webdriver tests. Chapter 4', () => {
@@ -48,13 +47,13 @@ describe('Webdriver tests. Chapter 4', () => {
 
     it('Should use page objects', () => {
         browser.get("http://book.theautomatedtester.co.uk");
-        homePage.clickChapter(2);
-        expect(chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
+        HomePage.clickChapter(2);
+        expect(Chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
     });
 
     it('Should Load The Home Page And Then Check Button On Chapter2', () => {
-        chapter2Page.get();
-        expect(chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
+        Chapter2Page.get();
+        expect(Chapter2Page.isButtonDisplayed("but1")).toBeTruthy();
     });
 });
 

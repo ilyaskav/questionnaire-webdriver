@@ -1,33 +1,34 @@
-let Chapter2Page = function(defaultWaitTime) {
-    defaultWaitTime = defaultWaitTime || 1000 * 3;
-    const _ec = protractor.ExpectedConditions;
+const Page = require('./Page');
 
-    this.verifyButton = element(by.name('verifybutton'));
+class Chapter2Page extends Page {
+    // defaultWaitTime = defaultWaitTime || 1000 * 3;
+    // const _ec = protractor.ExpectedConditions;
 
-    this.load = () => {
-        browser.get("http://book.theautomatedtester.co.uk/chapter2");
-    };
+    // this.verifyButton = 
+    get verifyButton() { return element(by.name('verifybutton')); } 
 
-    this.isLoaded = () => {
+    get load () { return browser.get("http://book.theautomatedtester.co.uk/chapter2"); }
+
+    isLoaded () {
         browser.getCurrentUrl().then((currentUrl) => {
             if (currentUrl !== "http://book.theautomatedtester.co.uk/chapter2") {
                 throw new Error("The wrong page has loaded");
             }
         });
-    };
+    }
 
-    this.get = () => {
+    get () {
         browser.getTitle().then((title) => {
             if (title !== "Selenium: Beginners Guide") {
                 browser.get("http://book.theautomatedtester.co.uk/chapter2");
             }
         });
-    };
+    }
 
-    this.isButtonDisplayed = (buttonId) => {
+    isButtonDisplayed (buttonId) {
         return element(by.id(buttonId)).isDisplayed();
-    };
+    }
 
-};
+}
 
-module.exports = Chapter2Page;
+module.exports = new Chapter2Page();

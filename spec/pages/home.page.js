@@ -1,11 +1,17 @@
-let HomePage = function(defaultWaitTime) {
-    defaultWaitTime = defaultWaitTime || 1000 * 3;
-    const _ec = protractor.ExpectedConditions;
+const Page = require('./Page');
 
-    this.clickChapter = (number) => {
+class HomePage extends Page {
+    get username() { return browser.element('#username'); }
+    // constructor(defaultWaitTime) {
+    //     this.defaultWaitTime = defaultWaitTime || 1000 * 3;
+
+    // }
+    // const _ec = protractor.ExpectedConditions;
+
+    clickChapter(number) {
         element(by.linkText("Chapter" + number)).click();
-    };
+    }
 
 };
 
-module.exports = HomePage;
+module.exports = new HomePage();
