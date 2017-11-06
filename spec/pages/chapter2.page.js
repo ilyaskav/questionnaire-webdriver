@@ -1,33 +1,40 @@
-let Chapter2Page = function(defaultWaitTime) {
-    defaultWaitTime = defaultWaitTime || 1000 * 3;
-    const _ec = protractor.ExpectedConditions;
+let Page = require('./page');
+let Chapter2Page = Object.create(Page, {
 
-    this.verifyButton = element(by.name('verifybutton'));
+    verifyButton: { get: () => element(by.name('verifybutton')) },
 
-    this.load = () => {
-        browser.get("http://book.theautomatedtester.co.uk/chapter2");
-    };
+    load: {
+        value: function () {
+            browser.get("http://book.theautomatedtester.co.uk/chapter2");
+        }
+    },
 
-    this.isLoaded = () => {
-        browser.getCurrentUrl().then((currentUrl) => {
-            if (currentUrl !== "http://book.theautomatedtester.co.uk/chapter2") {
-                throw new Error("The wrong page has loaded");
-            }
-        });
-    };
+    isLoaded: {
+        value: () => {
+            browser.getCurrentUrl().then((currentUrl) => {
+                if (currentUrl !== "http://book.theautomatedtester.co.uk/chapter2") {
+                    throw new Error("The wrong page has loaded");
+                }
+            });
+        }
+    },
 
-    this.get = () => {
-        browser.getTitle().then((title) => {
-            if (title !== "Selenium: Beginners Guide") {
-                browser.get("http://book.theautomatedtester.co.uk/chapter2");
-            }
-        });
-    };
+    get: {
+        value: () => {
+            browser.getTitle().then((title) => {
+                if (title !== "Selenium: Beginners Guide") {
+                    browser.get("http://book.theautomatedtester.co.uk/chapter2");
+                }
+            });
+        }
+    },
 
-    this.isButtonDisplayed = (buttonId) => {
-        return element(by.id(buttonId)).isDisplayed();
-    };
+    isButtonDisplayed: {
+        value: (buttonId) => {
+            return element(by.id(buttonId)).isDisplayed();
+        }
+    }
 
-};
+});
 
 module.exports = Chapter2Page;

@@ -8,7 +8,7 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: specs.map((value) => { return '../spec/' + value }),
     capabilities: {
-        browserName: 'chrome'
+        browserName: 'firefox'
     },
     jasmineNodeOpts: {
         defaultTimeoutInterval: 140000,

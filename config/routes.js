@@ -19,7 +19,7 @@ module.exports = function(app) {
     app.use(bodyParser.json());
     app.use(expressValidator()); // this line must be immediately after any of the bodyParser middlewares! 
     app.use(express.static('public'));
-    app.use(logger);
+    // app.use(logger);
 
 
     app.route('/api/submitForm').post(api.add);
