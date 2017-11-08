@@ -5,12 +5,6 @@ const config = require(process.cwd() + '/config/protractor.conf.js'),
     HomePage = require('../spec/pages/home.page.js'),
     Chapter2Page = require('../spec/pages/chapter2.page.js');
 
-// const _ec = protractor.ExpectedConditions,
-//     defaultWaitTime = config.defaultWaitTime;
-
-// let homePage = new HomePage(defaultWaitTime),
-//     chapter2Page = new Chapter2Page(defaultWaitTime);
-
 
 describe('Webdriver tests. Chapter 4', () => {
     beforeAll(() => {
